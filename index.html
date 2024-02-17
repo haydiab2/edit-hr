@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', function() {
   const id = params.get('id');
 
   fetch(`https://hayfacare.com/_functions/editAbsen?id=${id}`, {
-    method: 'GET',
+    method: 'GET', // Changed to GET as you're fetching data
     headers: {
       'Content-Type': 'application/json',
     },
   })
   .then(response => response.json())
   .then(data => {
-    // Update this line to display the title from the response
-    const title = data.data ? data.data.title : 'No title available';
-    document.getElementById('dataDisplay').textContent = `Title: ${title}`;
+    // Updated to display the title from the user object within the data object
+    const userTitle = data.data && data.data.user ? data.data.user.title : 'No title available';
+    document.getElementById('dataDisplay').textContent = `Title: ${userTitle}`;
   })
   .catch(error => console.error('Error:', error));
 });
@@ -35,7 +35,7 @@ function handleSubmit() {
   };
 
   console.log('Sending data:', inputData);
-  // Add fetch request or other actions to submit the inputData
+  // Here you would typically send the inputData to a server
 }
 </script>
 </head>
