@@ -9,12 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
 
-  fetch('https://hayfacare.com/_functions/editAbsen', {
-    method: 'POST',
+  fetch(`https://hayfacare.com/_functions/editAbsen?id=${id}`, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id: id }),
   })
   .then(response => response.json())
   .then(data => {
