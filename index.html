@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+
+  fetch('https://script.google.com/macros/s/AKfycbwdPnU7z2gY0hdM5cNNSjy5ZmLOORUmoV5b6-PNmprPmhjhtEsZRjdIa9TJmALCAiep7A/execL', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ request: id }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('dataDisplay').textContent = JSON.stringify(data);
+  })
+  .catch(error => console.error('Error:', error));
+});
+
+function handleSubmit() {
+  const inputData = {
+    input1: document.getElementById('input1').value,
+    input2: document.getElementById('input2').value,
+    input3: document.getElementById('input3').value,
+    input4: document.getElementById('input4').value,
+    input5: document.getElementById('input5').value,
+    input6: document.getElementById('input6').value,
+  };
+
+  // Example of what to do with the inputData, e.g., another fetch request
+  console.log('Sending data:', inputData);
+  // Here you would typically send the inputData to a server
+}
+</script>
+</head>
+<body>
+<div id="dataDisplay">Data will be displayed here</div>
+<input id="input1" type="text" placeholder="Input 1">
+<input id="input2" type="text" placeholder="Input 2">
+<input id="input3" type="text" placeholder="Input 3">
+<input id="input4" type="text" placeholder="Input 4">
+<input id="input5" type="text" placeholder="Input 5">
+<input id="input6" type="text" placeholder="Input 6">
+<button onclick="handleSubmit()">Submit</button>
+</body>
+</html>
