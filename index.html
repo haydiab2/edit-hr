@@ -8,7 +8,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('id');
-
+console.log(id)
   fetch(`https://hayfacare.com/_functions/editAbsen?id=${id}`, {
     method: 'GET', // Changed to GET as you're fetching data
     headers: {
